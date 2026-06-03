@@ -18,6 +18,7 @@ RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 # Copy the Python script into the container's working directory 
 
+COPY data/ ./data/
 COPY /scripts/train.py .
 
 
