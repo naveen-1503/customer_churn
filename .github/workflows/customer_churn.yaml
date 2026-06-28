@@ -1,1 +1,27 @@
+name: customer_churn
+
+on: 
+  push:
+
+jobs: 
+  runs-on: ubuntu-latest
+
+  steps:
+  - name: checkout code
+    actions: checkout@v6
+  
+  - name: setup python
+    uses: action/setup-python@v6
+    with:
+      python-version: '3.11'
+      cache: 'pip'
+    - run: pip install -r requirements.txt
+    - run: pip test
+
+  - name: test with pytest
+    run: |
+      pip install pytest pytest-cov
+      pytest tests.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+
+
 
