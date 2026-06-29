@@ -8,19 +8,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: checkout code
-      uses: actions/checkout@v4
+      - name: checkout code
+        uses: actions/checkout@v4
 
-    - name: setup python
+      - name: setup python
       uses: actions/setup-python@v6
-      with:
+        with:
         python-version: '3.11'
         cache: 'pip'
       - run: pip install -r requirements.txt
       - run: pip test
 
-    - name: test with pytest
-      run: |
+      - name: test with pytest
+        run: |
         pip install pytest pytest-cov
         pytest tests.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
 
